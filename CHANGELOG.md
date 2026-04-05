@@ -1,0 +1,9 @@
+# Schedule changelog
+
+## [v.1.0.0](https://github.com/EventFahrplan/schedule/releases/tag/v.1.0.0)
+
+* Published: 2026-04-05
+
+### Changes
+
+* This is the initial release. Have fun!

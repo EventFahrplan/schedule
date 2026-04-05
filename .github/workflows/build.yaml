@@ -1,0 +1,30 @@
+name: Build
+permissions:
+  checks: write
+  contents: read
+on: [pull_request, push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+
+      - name: Build the library
+        run: ./gradlew assemble
+
+      - name: Unit Tests
+        run: ./gradlew test
+
+      - name: Publish unit-test results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: |
+            build/test-results/**/*.xml
+            */build/test-results/**/*.xml

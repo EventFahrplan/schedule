@@ -1,0 +1,200 @@
+{
+  "$schema": "https://c3voc.de/schedule/schema.json",
+  "generator": {
+    "name": "fixture-generator",
+    "version": "1.0.0",
+    "url": "https://example.com/generator"
+  },
+  "schedule": {
+    "version": "39c3; bitsundbaeume_aboutfreedom: 0.21; ccc: 2.0; chaos_jetzt: 0.9; cdc: 0.24; fnf: 0.12; free-knowledge-habitat: 0.13; haecksen-assembly: 1.4; music: 1.5; sharedtables: 1.0; spaetverkauf: 0.6; sgmk: 1.0; 2026-01-31 11:25:44.369900+00:00",
+    "base_url": "https://events.ccc.de/congress/2025/hub/",
+    "conference": {
+      "acronym": "39c3",
+      "title": "39th Chaos Communications Congress",
+      "description": "Congress fixture description",
+      "start": "2025-12-27T10:00:00+00:00",
+      "end": "2025-12-30T15:00:00+00:00",
+      "daysCount": 4,
+      "timeslot_duration": "00:10",
+      "time_zone_name": "Europe/Berlin",
+      "logo": "https://events.ccc.de/congress/2025/hub/logo.png",
+      "colors": {
+        "primary": "#ffffff",
+        "background": "#000000"
+      },
+      "keywords": [
+        "chaos",
+        "congress"
+      ],
+      "url": "https://events.ccc.de/congress/2025/hub/",
+      "meta": {
+        "kind": "fixture",
+        "priority": "high"
+      },
+      "tracks": [
+        {
+          "name": "CCC & Community",
+          "color": "#a4a300",
+          "slug": "ccc-community"
+        }
+      ],
+      "rooms": [
+        {
+          "name": "One",
+          "slug": "one",
+          "guid": "ba692ba3-421b-5371-8309-60acc34a3c05",
+          "type": "lecturehall",
+          "stream_id": "s1",
+          "description": "Main lecture hall",
+          "capacity": 3025,
+          "url": "https://events.ccc.de/congress/2025/hub/room/one",
+          "description_en": "Lecture hall in CCH central, Level +2 to +4\n",
+          "description_de": "Lecture hall in CCH central, Level +2 to +4\n",
+          "features": {
+            "recording": "record_by_default"
+          },
+          "assembly": {
+            "name": "CCC",
+            "slug": "ccc",
+            "guid": "2465345f-f0e4-4a72-96d8-346d703a59e3",
+            "url": "https://events.ccc.de/congress/2025/hub/assembly/ccc"
+          }
+        },
+        {
+          "name": "Ground",
+          "slug": "ground",
+          "guid": "33333333-3333-3333-3333-333333333333",
+          "type": "stage",
+          "description": {
+            "en": "Ground stage",
+            "de": "Bodenbuehne"
+          },
+          "capacity": 750.5,
+          "url": "https://events.ccc.de/congress/2025/hub/room/ground",
+          "features": {
+            "recording": "recording_not_possible"
+          },
+          "assembly": {
+            "name": "CCC",
+            "slug": "ccc",
+            "guid": "2465345f-f0e4-4a72-96d8-346d703a59e3",
+            "url": "https://events.ccc.de/congress/2025/hub/assembly/ccc"
+          }
+        }
+      ],
+      "days": [
+        {
+          "index": 1,
+          "date": "2025-12-27",
+          "day_start": "2025-12-27T11:00:00+01:00",
+          "day_end": "2025-12-28T06:00:00+01:00",
+          "rooms": {
+            "One": [
+              {
+                "guid": "0c8b0cb4-6cf9-5ff8-928a-0a0f49558c48",
+                "code": "POWER1",
+                "id": 1233,
+                "date": "2025-12-27T10:30:00+01:00",
+                "start": "10:30",
+                "duration": "00:30",
+                "room": "One",
+                "slug": "39c3-opening-ceremony",
+                "title": "Opening Ceremony",
+                "subtitle": null,
+                "language": "de",
+                "track": "CCC & Community",
+                "type": "Ceremony",
+                "abstract": "Power On! Lasst uns gemeinsam an diesem magischen Ort ankommen und alles vorbereiten, um die n\u00e4chsten vier Tage in einer fr\u00f6hlich-kreativen, fantastischen Wunderwelt zu verbringen und Kraft zu tanken.",
+                "description": "Das Opening gibt euch die wichtigsten Infos f\u00fcr den Congress, stimmt euch ein und ... \u00e4h ... bis Sp\u00e4ti!\n",
+                "recording_license": "CC-BY-4.0",
+                "logo": null,
+                "persons": [
+                  {
+                    "guid": "4f09b480-eebf-54b5-b703-781907c5e048",
+                    "id": 1,
+                    "name": "pajowu",
+                    "public_name": "pajowu",
+                    "links": [
+                      {
+                        "url": "https://example.com/@pajowu",
+                        "type": "web",
+                        "title": "Profile"
+                      }
+                    ],
+                    "avatar": "https://cfp.cccv.de/media/avatars/3RGBM8_I2z1NKj.webp",
+                    "biography": "pajowu macht hacktivism bei zerforschung, tech-stuff f\u00fcr fragdenstaat und versucht die welt ein bisschen bunter zu machen.\n",
+                    "url": "https://events.ccc.de/congress/2025/hub/user/speaker_4f09b480-eebf-54b5-b703-781907c5e048"
+                  },
+                  {
+                    "guid": "5fe4f13e-449a-5831-b12d-4e6e22a43e75",
+                    "code": "STELLA1",
+                    "name": "Stella",
+                    "public_name": "Stella",
+                    "avatar": "https://cfp.cccv.de/media/avatars/Q9L893_GlRDE3W.png",
+                    "biography": "Stella ist Grafikerin aus Berlin und hat schon mehrere CCC-Designs geliefert \u2013 die Designs zum 33C3, 35C3 und das Camp-Design 2023.\n\nBei letzten Congress zeichnete sie die anonymisierten Karten f\u00fcr den Talk von Michael Kreil und Fl\u00fcpke \"Wir wissen wo dein Auto steht\" https://media.ccc.de/v/38c3-wir-wissen-wo-dein-auto-steht-volksdaten-von-volkswagen\n\nStella interessiert sich f\u00fcr Gestaltungsideen mit kleinen Easter-Eggs, die erst beim zweiten Blick auffallen.\n",
+                    "url": "https://events.ccc.de/congress/2025/hub/user/speaker_5fe4f13e-449a-5831-b12d-4e6e22a43e75"
+                  }
+                ],
+                "url": "https://events.ccc.de/congress/2025/hub/event/detail/opening-ceremony",
+                "links": [],
+                "origin_url": "https://cfp.cccv.de/39c3/talk/POWER1/",
+                "feedback_url": "https://cfp.cccv.de/39c3/talk/POWER1/feedback/",
+                "do_not_record": false,
+                "do_not_stream": null
+              }
+            ],
+            "Ground": [
+              {
+                "guid": "7c12c5be-5414-5673-a856-697a3889f824",
+                "code": "X8ZZBV",
+                "id": 1979,
+                "date": "2025-12-27T11:00:00+01:00",
+                "start": "11:00",
+                "duration": "00:40",
+                "room": "Ground",
+                "slug": "39c3-the-art-of-text-rendering",
+                "title": "The art of text (rendering)",
+                "subtitle": null,
+                "language": "en",
+                "track": "Art & Beauty",
+                "type": "Talk",
+                "abstract": "Typography is the art of arranging type to make written language legible, readable, and appealing when displayed. However, for the neophyte, typography is mostly apprehended as the juxtaposition of characters displayed on the screen while for the expert, typography means typeface, scripts, unicode, glyphs, ascender, descender, tracking, hinting, kerning, shaping, weigth, slant, etc. Typography is actually much more than the mere rendering of glyphs and involves many different concepts. If glyph rendering is an important part of the rendering pipeline, it is nonetheless important to have a basic understanding of typography or there\u2019s a known risk at rendering garbage on screen, as it has been seen many times in games, software and operating systems.",
+                "description": "Text is everywhere in our modern digital life and yet, no one really pay attention to how it is rendered on a screen. Maybe this is a sign that problem has been solved. But it isn't. A few people are still looking at the best way to display text on any devices & any languages. This talk is based on a lesson I gave at SIGGRAPH  a few years ago (https://www.slideshare.net/slideshow/siggraph-2018-digital-typography/110385070) to explain rendering techniques and concepts.\n",
+                "logo": "https://cfp.cccv.de/media/39c3/submissions/X8ZZBV/Screenshot_2025-10-24_at_06.46.40_Q2EZe_loAs9SN.webp",
+                "persons": [
+                  {
+                    "guid": "1003d587-47d0-515c-ba6f-1b0a5b310060",
+                    "name": "Nicolas Rougier",
+                    "public_name": "Nicolas Rougier",
+                    "avatar": "https://cfp.cccv.de/media/avatars/WYBKA3_oDongQG.png",
+                    "biography": "I\u2019m a senior researcher in computational cognitive neuroscience at Inria and the Institute of Neurodegenerative Diseases (Bordeaux, France). I\u2019m investigating decision making, learning and cognition using computational models of the brain and distributed, numerical and adaptive computing, a.k.a. artificial neural networks and machine learning. My research aims to irrigate the fields of philosophy with regard to the mind-body problem, medicine to account for the normal and pathological functioning of the brain and the digital sciences to offer alternative computing paradigms. Beside neuroscience and philosophy, I\u2019m also interested in open and reproducible science, scientific visualization, computer graphics\n",
+                    "url": "https://events.ccc.de/congress/2025/hub/user/speaker_1003d587-47d0-515c-ba6f-1b0a5b310060"
+                  }
+                ],
+                "url": "https://events.ccc.de/congress/2025/hub/event/detail/the-art-of-text-rendering",
+                "links": [
+                  {
+                    "url": "https://inria.hal.science/hal-05430837v1",
+                    "type": "related",
+                    "title": "Presentation slides"
+                  }
+                ],
+                "origin_url": "https://cfp.cccv.de/39c3/talk/X8ZZBV/",
+                "feedback_url": "https://cfp.cccv.de/39c3/talk/X8ZZBV/feedback/",
+                "do_not_record": false,
+                "do_not_stream": null,
+                "attachments": [
+                  {
+                    "url": "https://example.com/slides.pdf",
+                    "type": "slides",
+                    "title": "Slides"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
