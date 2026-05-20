@@ -1,5 +1,14 @@
 # Schedule changelog
 
+## NEXT
+
+* Not published yet
+
+### Changes
+
+* **Breaking change:** Skip events missing mandatory fields.
+
+
 ## [v.1.0.0](https://github.com/EventFahrplan/schedule/releases/tag/v.1.0.0)
 
 * Published: 2026-04-05
