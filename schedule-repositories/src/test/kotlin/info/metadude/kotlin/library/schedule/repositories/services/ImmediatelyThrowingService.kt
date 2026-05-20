@@ -7,9 +7,9 @@ import retrofit2.Response
 internal class ImmediatelyThrowingService : ScheduleService {
 
     override suspend fun getScheduleV1(
-        eTag: String,
-        lastModifiedAt: String,
         path: String,
+        eTag: String?,
+        lastModifiedAt: String?,
     ): Response<ScheduleV1> =
         throw RuntimeException()
 }

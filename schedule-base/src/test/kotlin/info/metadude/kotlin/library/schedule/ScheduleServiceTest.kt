@@ -46,7 +46,7 @@ internal class ScheduleServiceTest {
             .readText()
 
         server.enqueue(createResponse(json))
-        val response = service.getScheduleV1("", "", "schedule.json")
+        val response = service.getScheduleV1("schedule.json")
         assertThat(response.isSuccessful).isTrue()
         assertScheduleV1(requireNotNull(response.body()) { "Missing body" })
     }
@@ -184,7 +184,7 @@ internal class ScheduleServiceTest {
         """.trimIndent()
 
         server.enqueue(createResponse(json))
-        val response = service.getScheduleV1("", "", "")
+        val response = service.getScheduleV1("")
         assertThat(response.isSuccessful).isTrue()
         val body = requireNotNull(response.body()) { "Missing body" }
         assertThat(body.schedule.conference.start).isEqualTo(
@@ -259,7 +259,7 @@ internal class ScheduleServiceTest {
         """.trimIndent()
 
         server.enqueue(createResponse(json))
-        val response = service.getScheduleV1("", "", "")
+        val response = service.getScheduleV1("")
         assertThat(response.isSuccessful).isTrue()
         val conference = requireNotNull(response.body()) { "Missing body" }.schedule.conference
         assertThat(conference.rooms.single().type).isEqualTo(RoomType.UNKNOWN)
@@ -322,7 +322,7 @@ internal class ScheduleServiceTest {
         """.trimIndent()
 
         server.enqueue(createResponse(json))
-        val response = service.getScheduleV1("", "", "")
+        val response = service.getScheduleV1("")
         assertThat(response.isSuccessful).isTrue()
         val events = requireNotNull(response.body()) { "Missing body" }
             .schedule.conference.days.single().rooms.getValue("One")
@@ -334,7 +334,7 @@ internal class ScheduleServiceTest {
     fun `getSchedule fails when JSON is malformed`() = runTest {
         server.enqueue(createResponse("not json"))
         assertThrows<Exception> {
-            service.getScheduleV1("", "", "")
+            service.getScheduleV1("")
         }
     }
 

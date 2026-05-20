@@ -7,6 +7,7 @@
 ### Changes
 
 * **Breaking changes:**
+  * Fix sending empty header fields to which the webserver responds with HTTP 400.
   * Support logging to be injected from app.
   * Skip events missing mandatory fields.
 

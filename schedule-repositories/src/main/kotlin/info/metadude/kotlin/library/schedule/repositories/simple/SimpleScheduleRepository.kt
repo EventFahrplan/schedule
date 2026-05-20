@@ -36,7 +36,11 @@ class SimpleScheduleRepository(
                 val (baseUrl, path) = url.getUrlComponents()
                 val response = api
                     .provideScheduleService(baseUrl, callFactory, logging)
-                    .getScheduleV1(requestETag, lastModifiedAt, path)
+                    .getScheduleV1(
+                        path = path,
+                        eTag = requestETag.ifBlank { null },
+                        lastModifiedAt = lastModifiedAt.ifBlank { null },
+                    )
                 if (response.isSuccessful) {
                     val body = response.body()
                     if (body == null) {

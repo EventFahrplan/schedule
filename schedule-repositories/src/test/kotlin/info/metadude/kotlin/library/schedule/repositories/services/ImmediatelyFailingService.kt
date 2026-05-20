@@ -9,9 +9,9 @@ import retrofit2.Response
 internal class ImmediatelyFailingService : ScheduleService {
 
     override suspend fun getScheduleV1(
-        eTag: String,
-        lastModifiedAt: String,
         path: String,
+        eTag: String?,
+        lastModifiedAt: String?,
     ): Response<ScheduleV1> {
         val responseBody = "Service Unavailable.".toResponseBody("plain/text".toMediaType())
         return Response.error(503, responseBody)
