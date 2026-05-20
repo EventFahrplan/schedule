@@ -1,6 +1,8 @@
 package info.metadude.kotlin.library.schedule.repositories.simple
 
 import info.metadude.kotlin.library.schedule.Api
+import info.metadude.kotlin.library.schedule.Logging
+import info.metadude.kotlin.library.schedule.Logging.Companion.None
 import info.metadude.kotlin.library.schedule.ScheduleApi
 import info.metadude.kotlin.library.schedule.repositories.ScheduleRepository
 import info.metadude.kotlin.library.schedule.repositories.models.GetScheduleV1State
@@ -15,6 +17,7 @@ import okhttp3.OkHttpClient
 
 class SimpleScheduleRepository(
     private val callFactory: Call.Factory = OkHttpClient.Builder().build(),
+    private val logging: Logging = None,
     private val api: ScheduleApi = Api,
 ) : ScheduleRepository {
 
@@ -32,7 +35,7 @@ class SimpleScheduleRepository(
             val emission = try {
                 val (baseUrl, path) = url.getUrlComponents()
                 val response = api
-                    .provideScheduleService(baseUrl, callFactory)
+                    .provideScheduleService(baseUrl, callFactory, logging)
                     .getScheduleV1(requestETag, lastModifiedAt, path)
                 if (response.isSuccessful) {
                     val body = response.body()

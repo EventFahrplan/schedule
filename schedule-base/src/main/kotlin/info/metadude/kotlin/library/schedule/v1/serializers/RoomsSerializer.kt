@@ -1,5 +1,7 @@
 package info.metadude.kotlin.library.schedule.v1.serializers
 
+import info.metadude.kotlin.library.schedule.Logging
+import info.metadude.kotlin.library.schedule.Logging.Companion.None
 import info.metadude.kotlin.library.schedule.v1.models.Event
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
@@ -12,7 +14,9 @@ import kotlinx.serialization.json.JsonDecoder
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 
-object RoomsSerializer : KSerializer<Map<String, List<Event>>> {
+class RoomsSerializer(
+    private val logging: Logging = None,
+) : KSerializer<Map<String, List<Event>>> {
 
     private val delegateSerializer = MapSerializer(String.serializer(), ListSerializer(Event.serializer()))
 
@@ -25,7 +29,7 @@ object RoomsSerializer : KSerializer<Map<String, List<Event>>> {
         return rooms.mapValues { (_, events) ->
             events.jsonArray.mapNotNull { event ->
                 runCatching { jsonDecoder.json.decodeFromJsonElement(Event.serializer(), event) }
-                    .onFailure { print("Failed to deserialize event: $event") }
+                    .onFailure { logging.onDeserializeFailed(event.toString(), it) }
                     .getOrNull()
             }
         }

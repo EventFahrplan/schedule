@@ -3,6 +3,7 @@ package info.metadude.kotlin.library.schedule.v1.models
 import info.metadude.kotlin.library.schedule.v1.serializers.ConferenceDateSerializer
 import info.metadude.kotlin.library.schedule.v1.serializers.DurationSerializer
 import info.metadude.kotlin.library.schedule.v1.serializers.ZoneIdSerializer
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.threeten.bp.Duration
@@ -31,5 +32,5 @@ data class Conference(
     val url: String? = null,
     val tracks: List<Track> = emptyList(),
     val rooms: List<Room> = emptyList(),
-    val days: List<Day>,
+    val days: List<@Contextual Day>,
 )

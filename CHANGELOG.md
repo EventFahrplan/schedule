@@ -6,7 +6,9 @@
 
 ### Changes
 
-* **Breaking change:** Skip events missing mandatory fields.
+* **Breaking changes:**
+  * Support logging to be injected from app.
+  * Skip events missing mandatory fields.
 
 
 ## [v.1.0.0](https://github.com/EventFahrplan/schedule/releases/tag/v.1.0.0)

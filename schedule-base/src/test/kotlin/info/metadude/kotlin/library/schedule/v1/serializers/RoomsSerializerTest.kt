@@ -12,7 +12,7 @@ internal class RoomsSerializerTest {
     @Test
     fun `deserialize skips events that fail decoding`() {
         val rooms = json.decodeFromString(
-            RoomsSerializer,
+            RoomsSerializer(),
             """
                 {
                   "One": [

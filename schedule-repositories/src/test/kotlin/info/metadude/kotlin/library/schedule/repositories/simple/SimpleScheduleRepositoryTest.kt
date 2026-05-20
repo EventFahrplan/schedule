@@ -28,7 +28,7 @@ internal class SimpleScheduleRepositoryTest {
     @Test
     fun `getScheduleV1State returns success with schedule wrapper`() = runTest {
         api = mock {
-            on { provideScheduleService(any(), any()) }
+            on { provideScheduleService(any(), any(), any()) }
                 .doReturn(ImmediatelySucceedingService())
         }
         val repository = createRepository(api)
@@ -45,7 +45,7 @@ internal class SimpleScheduleRepositoryTest {
     @Test
     fun `getScheduleV1State returns error with http error`() = runTest {
         api = mock {
-            on { provideScheduleService(any(), any()) }
+            on { provideScheduleService(any(), any(), any()) }
                 .doReturn(ImmediatelyFailingService())
         }
         val repository = createRepository(api)
@@ -62,7 +62,7 @@ internal class SimpleScheduleRepositoryTest {
     @Test
     fun `getScheduleV1State returns failure with runtime exception`() = runTest {
         api = mock {
-            on { provideScheduleService(any(), any()) }
+            on { provideScheduleService(any(), any(), any()) }
                 .doReturn(ImmediatelyThrowingService())
         }
         val repository = createRepository(api)
@@ -77,7 +77,7 @@ internal class SimpleScheduleRepositoryTest {
     @Test
     fun `getScheduleV1State returns failure with IllegalArgumentException`() = runTest {
         api = mock {
-            on { provideScheduleService(any(), any()) }
+            on { provideScheduleService(any(), any(), any()) }
                 .doReturn(ImmediatelySucceedingService())
         }
         val repository = createRepository(api)
