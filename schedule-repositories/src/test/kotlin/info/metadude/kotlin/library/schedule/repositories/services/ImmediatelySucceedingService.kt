@@ -25,9 +25,9 @@ import kotlin.uuid.Uuid
 internal class ImmediatelySucceedingService : ScheduleService {
 
     override suspend fun getScheduleV1(
-        eTag: String,
-        lastModifiedAt: String,
         path: String,
+        eTag: String?,
+        lastModifiedAt: String?,
     ): Response<ScheduleV1> = Response.success(
         ScheduleV1(
             schema = "https://c3voc.de/schedule/schema.json",

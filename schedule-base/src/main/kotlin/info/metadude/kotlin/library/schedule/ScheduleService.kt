@@ -10,8 +10,8 @@ interface ScheduleService {
 
     @GET("{path}")
     suspend fun getScheduleV1(
-        @Header("If-None-Match") eTag: String,
-        @Header("If-Modified-Since") lastModifiedAt: String,
         @Path("path", encoded = true) path: String,
+        @Header("If-None-Match") eTag: String? = null,
+        @Header("If-Modified-Since") lastModifiedAt: String? = null,
     ): Response<ScheduleV1>
 }

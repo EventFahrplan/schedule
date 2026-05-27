@@ -28,7 +28,7 @@ internal class ProductionApiTest {
     @Test
     fun `getScheduleV1 responds successfully from production API`() = runTest {
         try {
-            val response = service.getScheduleV1("", "", SCHEDULE_PATH)
+            val response = service.getScheduleV1(SCHEDULE_PATH)
             when (response.isSuccessful) {
                 true -> {
                     val schedule = response.body()

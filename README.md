@@ -18,11 +18,12 @@ The `schedule-base` artifact returns a `Response<ScheduleV1>` type
 from the suspending `ScheduleService#getScheduleV1` function.
 
 ```kotlin
-suspend fun loadSchedule(okHttpClient: Call.Factory) {
+suspend fun loadSchedule(okHttpClient: Call.Factory, logging: Logging) {
     val api: ScheduleApi = Api
     val service: ScheduleService = api.provideScheduleService(
         baseUrl = "https://some.event.com/schedules/",
         callFactory = okHttpClient,
+        logging = logging,
     )
 
     val requestETag = "" // Pass an empty string or a previous ETag value for caching
@@ -50,9 +51,10 @@ The `schedule-repositories` artifact returns a `Flow<GetScheduleV1State>` type
 from the suspending `ScheduleRepository#getScheduleV1State` function.
 
 ```kotlin
-suspend fun loadSchedule(okHttpClient: Call.Factory) {
+suspend fun loadSchedule(okHttpClient: Call.Factory, logging: Logging) {
     val repository: ScheduleRepository = SimpleScheduleRepository(
         callFactory = okHttpClient,
+        logging = logging,
         api = Api,
     )
 
