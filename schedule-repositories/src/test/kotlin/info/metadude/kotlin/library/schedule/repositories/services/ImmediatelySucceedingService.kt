@@ -21,6 +21,26 @@ import info.metadude.kotlin.library.schedule.v1.models.RoomType as RoomTypeV1
 import info.metadude.kotlin.library.schedule.v1.models.Schedule as ScheduleV1
 import info.metadude.kotlin.library.schedule.v1.models.ScheduleV1 as ScheduleV1Model
 import info.metadude.kotlin.library.schedule.v1.models.Track as TrackV1
+import info.metadude.kotlin.library.schedule.v2.models.Conference as ConferenceV2
+import info.metadude.kotlin.library.schedule.v2.models.ConferenceDefaults as ConferenceDefaultsV2
+import info.metadude.kotlin.library.schedule.v2.models.Day as DayV2
+import info.metadude.kotlin.library.schedule.v2.models.EventParticipant as EventParticipantV2
+import info.metadude.kotlin.library.schedule.v2.models.Generator as GeneratorV2
+import info.metadude.kotlin.library.schedule.v2.models.LocalizableString as LocalizableStringV2
+import info.metadude.kotlin.library.schedule.v2.models.Reference as ReferenceV2
+import info.metadude.kotlin.library.schedule.v2.models.ReferenceType as ReferenceTypeV2
+import info.metadude.kotlin.library.schedule.v2.models.Room as RoomV2
+import info.metadude.kotlin.library.schedule.v2.models.RoomFeatures as RoomFeaturesV2
+import info.metadude.kotlin.library.schedule.v2.models.RoomReference as RoomReferenceV2
+import info.metadude.kotlin.library.schedule.v2.models.RoomType as RoomTypeV2
+import info.metadude.kotlin.library.schedule.v2.models.Schedule as ScheduleV2Schedule
+import info.metadude.kotlin.library.schedule.v2.models.ScheduleDuration as ScheduleDurationV2
+import info.metadude.kotlin.library.schedule.v2.models.ScheduleV2 as ScheduleV2Model
+import info.metadude.kotlin.library.schedule.v2.models.ScheduledEvent as ScheduledEventV2
+import info.metadude.kotlin.library.schedule.v2.models.ScheduledEventType as ScheduledEventTypeV2
+import info.metadude.kotlin.library.schedule.v2.models.Theme as ThemeV2
+import info.metadude.kotlin.library.schedule.v2.models.Track as TrackV2
+import info.metadude.kotlin.library.schedule.v2.models.TrackReference as TrackReferenceV2
 
 internal class ImmediatelySucceedingService : ScheduleService {
 
@@ -82,4 +102,92 @@ internal class ImmediatelySucceedingService : ScheduleService {
         )
     )
 
+    override suspend fun getScheduleV2(
+        path: String,
+        eTag: String?,
+        lastModifiedAt: String?,
+    ): Response<ScheduleV2Model> = Response.success(
+        ScheduleV2Model(
+            schema = "https://c3voc.de/schema/schedule2",
+            generator = GeneratorV2(
+                name = "test-generator",
+                version = "2.0.0",
+                url = "https://example.com/generator",
+            ),
+            schedule = ScheduleV2Schedule(
+                version = "test-v2",
+                baseUrl = "https://example.com/",
+                conference = ConferenceV2(
+                    acronym = "test",
+                    title = "Test Conference",
+                    description = LocalizableStringV2.Text("Test description"),
+                    start = OffsetDateTime.parse("2025-01-01T00:00:00+00:00"),
+                    end = OffsetDateTime.parse("2025-01-02T00:00:00+00:00"),
+                    timeslotDuration = ScheduleDurationV2("PT10M"),
+                    timeZoneName = ZoneId.of("UTC"),
+                    url = "https://example.com/",
+                    defaults = ConferenceDefaultsV2(theme = ThemeV2.DARK, language = "en"),
+                    tracks = listOf(
+                        TrackV2(
+                            guid = Uuid.parse("33333333-3333-3333-3333-333333333333"),
+                            name = "Test",
+                            slug = "test",
+                        )
+                    ),
+                    rooms = listOf(
+                        RoomV2(
+                            name = "Room 1",
+                            slug = "room-1",
+                            type = RoomTypeV2.LECTURE_HALL,
+                            guid = Uuid.parse("11111111-1111-1111-1111-111111111111"),
+                            features = RoomFeaturesV2(),
+                        )
+                    ),
+                    days = listOf(
+                        DayV2(
+                            index = 1,
+                            date = LocalDate.parse("2025-01-01"),
+                            start = OffsetDateTime.parse("2025-01-01T09:00:00+00:00"),
+                            end = OffsetDateTime.parse("2025-01-02T02:00:00+00:00"),
+                        )
+                    ),
+                ),
+                events = listOf(
+                    ScheduledEventV2(
+                        guid = Uuid.parse("44444444-4444-4444-4444-444444444444"),
+                        code = "TESTV2",
+                        start = OffsetDateTime.parse("2025-01-01T10:00:00+00:00"),
+                        end = OffsetDateTime.parse("2025-01-01T10:30:00+00:00"),
+                        duration = ScheduleDurationV2("PT30M"),
+                        room = RoomReferenceV2(
+                            guid = Uuid.parse("11111111-1111-1111-1111-111111111111"),
+                            name = "Room 1",
+                            slug = "room-1",
+                        ),
+                        slug = "test-v2-event",
+                        url = "https://example.com/event",
+                        title = "Test Event",
+                        subtitle = null,
+                        track = TrackReferenceV2("test"),
+                        type = ScheduledEventTypeV2.TALK,
+                        language = "en",
+                        abstractText = LocalizableStringV2.Text("Abstract"),
+                        description = LocalizableStringV2.Text("Description"),
+                        participants = listOf(
+                            EventParticipantV2(
+                                guid = Uuid.parse("55555555-5555-5555-5555-555555555555"),
+                                name = "Speaker",
+                            )
+                        ),
+                        links = listOf(
+                            ReferenceV2(
+                                type = ReferenceTypeV2.WEB,
+                                url = "https://example.com/link",
+                            )
+                        ),
+                    )
+                ),
+            ),
+        )
+    )
 }
