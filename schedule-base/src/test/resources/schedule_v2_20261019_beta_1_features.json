@@ -1,0 +1,153 @@
+{
+  "$schema": "https://c3voc.de/schedule/schema2.json#beta-1",
+  "schedule": {
+    "version": "test",
+    "state": "DRAFT",
+    "baseUrl": "https://example.com/",
+    "conference": {
+      "acronym": "demo",
+      "title": "Demo",
+      "start": "2025-01-01T09:00:00+01:00",
+      "end": "2025-01-01T18:00:00+01:00",
+      "url": "https://example.com/conference",
+      "timeZone": {
+        "name": "Europe/Berlin"
+      },
+      "location": {
+        "name": "CCH",
+        "address": "Messeplatz 1, 20357 Hamburg, Germany",
+        "url": "https://cch.de",
+        "geolocation": {
+          "type": "Point",
+          "coordinates": [9.993568, 53.552556]
+        },
+        "sameAs": ["https://www.wikidata.org/wiki/Q896114"]
+      },
+      "organizer": {
+        "name": "CCC",
+        "title": "Chaos Computer Club e.V.",
+        "url": "https://ccc.de/"
+      },
+      "sameAs": ["https://www.wikidata.org/wiki/Q141455450"],
+      "partOf": ["https://www.wikidata.org/wiki/Q1068013"],
+      "tracks": [
+        {
+          "name": "Security",
+          "slug": "security",
+          "type": "MAIN",
+          "sameAs": ["https://www.wikidata.org/wiki/Q141455293"]
+        }
+      ],
+      "rooms": [
+        {
+          "type": "LECTURE_HALL",
+          "name": "Saal 1",
+          "slug": "saal-1",
+          "guid": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+          "stream": {
+            "id": "s1"
+          },
+          "geolocation": {
+            "type": "Point",
+            "coordinates": [9.993568, 53.552556]
+          },
+          "sameAs": ["https://www.openstreetmap.org/node/1"]
+        },
+        {
+          "type": "STAGE",
+          "name": "Stage",
+          "slug": "stage",
+          "guid": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+          "stream": null
+        }
+      ],
+      "days": [
+        {
+          "index": 1,
+          "date": "2025-01-01",
+          "start": "2025-01-01T09:00:00+01:00",
+          "end": "2025-01-01T18:00:00+01:00"
+        }
+      ]
+    },
+    "events": [
+      {
+        "type": "TALK",
+        "guid": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+        "start": "2025-01-01T10:00:00+01:00",
+        "end": "2025-01-01T10:30:00+01:00",
+        "room": {
+          "guid": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+        },
+        "slug": "scheduled",
+        "url": "https://example.com/event/scheduled",
+        "title": "Scheduled",
+        "subtitle": null,
+        "track": {
+          "slug": "security"
+        },
+        "languages": ["en", "de"],
+        "abstract": null,
+        "image": {
+          "url": "https://example.com/scheduled.png"
+        },
+        "participants": [
+          {
+            "guid": "dddddddd-dddd-dddd-dddd-dddddddddddd",
+            "name": "Speaker"
+          }
+        ],
+        "links": [
+          { "type": "ACTIVITYPUB", "url": "https://example.com/@talk/1", "service": "MASTODON" },
+          { "type": "MEDIA", "url": "https://example.com/v/scheduled", "service": "VOCTOWEB" }
+        ]
+      },
+      {
+        "type": "WORKSHOP",
+        "guid": "cccccccc-cccc-cccc-cccc-cccccccccccc",
+        "duration": "PT1H",
+        "state": "SUBMITTED",
+        "location": {
+          "name": "Bar",
+          "address": "Somewhere 1, 20357 Hamburg, Germany"
+        },
+        "url": "https://example.com/event/unscheduled",
+        "title": "Unscheduled",
+        "subtitle": null,
+        "languages": null,
+        "abstract": "Not scheduled yet",
+        "participants": [
+          {
+            "name": "Submitter",
+            "role": "HOST"
+          }
+        ]
+      },
+      {
+        "type": "TALK",
+        "guid": "eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee",
+        "start": "2025-01-01T14:00:00+01:00",
+        "state": "ACCEPTED",
+        "room": {
+          "guid": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+        },
+        "url": "https://example.com/event/planned-with-start",
+        "title": "Planned with start",
+        "subtitle": null,
+        "languages": ["en"],
+        "abstract": null,
+        "participants": [],
+        "links": []
+      }
+    ],
+    "persons": [
+      {
+        "guid": "dddddddd-dddd-dddd-dddd-dddddddddddd",
+        "name": "Speaker",
+        "links": [
+          { "type": "ATPROTO", "url": "https://example.com/profile/speaker" }
+        ]
+      }
+    ]
+  }
+}

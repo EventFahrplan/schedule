@@ -6,6 +6,10 @@
 
 ### Changes
 
+* **New API:** Add support for schedule v2, based on beta-1 schema.
+  * Add models and serializers in the `v2` packages. Unknown enum values are mapped to `UNKNOWN`.
+  * Add `ScheduleService` and repository functions to fetch v2 schedules.
+  * Schedule v1 is unchanged and can be used side by side.
 * **Breaking change:** Build with JVM target 21.
 * `com.squareup.okhttp3:okhttp:5.5.0`
 * `org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.21`

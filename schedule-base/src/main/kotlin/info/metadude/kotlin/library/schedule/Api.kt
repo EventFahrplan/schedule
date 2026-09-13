@@ -1,10 +1,6 @@
 package info.metadude.kotlin.library.schedule
 
 import info.metadude.kotlin.library.schedule.Logging.Companion.None
-import info.metadude.kotlin.library.schedule.v1.models.Day
-import info.metadude.kotlin.library.schedule.v1.serializers.DaySerializer
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.modules.SerializersModule
 import okhttp3.Call
 import okhttp3.MediaType.Companion.toMediaType
 import org.jetbrains.annotations.VisibleForTesting
@@ -38,12 +34,7 @@ object Api : ScheduleApi {
         .build()
 
     private fun createJsonConverterFactory(logging: Logging): Factory {
-        val json = Json {
-            ignoreUnknownKeys = true
-            serializersModule = SerializersModule {
-                contextual(Day::class, DaySerializer(logging))
-            }
-        }
+        val json = ScheduleJson.create(logging)
         return json.asConverterFactory(CONTENT_TYPE)
     }
 }

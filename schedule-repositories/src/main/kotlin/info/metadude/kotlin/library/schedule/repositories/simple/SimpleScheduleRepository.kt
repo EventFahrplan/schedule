@@ -7,6 +7,7 @@ import info.metadude.kotlin.library.schedule.ScheduleApi
 import info.metadude.kotlin.library.schedule.ScheduleService
 import info.metadude.kotlin.library.schedule.repositories.ScheduleRepository
 import info.metadude.kotlin.library.schedule.repositories.models.GetScheduleV1State
+import info.metadude.kotlin.library.schedule.repositories.models.GetScheduleV2State
 import info.metadude.kotlin.library.schedule.repositories.utils.UrlComponents.Companion.getUrlComponents
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -16,6 +17,9 @@ import retrofit2.Response
 import info.metadude.kotlin.library.schedule.repositories.models.GetScheduleV1State.Error as ErrorV1
 import info.metadude.kotlin.library.schedule.repositories.models.GetScheduleV1State.Failure as FailureV1
 import info.metadude.kotlin.library.schedule.repositories.models.GetScheduleV1State.Success as SuccessV1
+import info.metadude.kotlin.library.schedule.repositories.models.GetScheduleV2State.Error as ErrorV2
+import info.metadude.kotlin.library.schedule.repositories.models.GetScheduleV2State.Failure as FailureV2
+import info.metadude.kotlin.library.schedule.repositories.models.GetScheduleV2State.Success as SuccessV2
 
 class SimpleScheduleRepository(
     private val callFactory: Call.Factory = OkHttpClient.Builder().build(),
@@ -40,6 +44,20 @@ class SimpleScheduleRepository(
         success = ::SuccessV1,
         error = ::ErrorV1,
         failure = ::FailureV1,
+    )
+
+    override suspend fun getScheduleV2State(
+        url: String,
+        requestETag: String,
+        lastModifiedAt: String,
+    ): Flow<GetScheduleV2State> = getScheduleState(
+        url = url,
+        requestETag = requestETag,
+        lastModifiedAt = lastModifiedAt,
+        request = ScheduleService::getScheduleV2,
+        success = ::SuccessV2,
+        error = ::ErrorV2,
+        failure = ::FailureV2,
     )
 
     private fun <Schedule, State> getScheduleState(

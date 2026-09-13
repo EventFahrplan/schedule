@@ -1,9 +1,9 @@
 package info.metadude.kotlin.library.schedule.v1.serializers
 
 import com.google.common.truth.Truth.assertThat
+import info.metadude.kotlin.library.schedule.ScheduleJson
 import info.metadude.kotlin.library.schedule.v1.models.ConferenceDate.Date
 import info.metadude.kotlin.library.schedule.v1.models.ConferenceDate.DateTime
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonPrimitive
 import org.junit.jupiter.api.Test
 import org.threeten.bp.LocalDate
@@ -11,7 +11,7 @@ import org.threeten.bp.OffsetDateTime
 
 internal class ConferenceDateSerializerTest {
 
-    private val json = Json
+    private val json = ScheduleJson.create()
 
     @Test
     fun `deserialize date only string to Date`() {

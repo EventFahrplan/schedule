@@ -1,7 +1,7 @@
 package info.metadude.kotlin.library.schedule.v1.serializers
 
 import com.google.common.truth.Truth.assertThat
-import kotlinx.serialization.json.Json
+import info.metadude.kotlin.library.schedule.ScheduleJson
 import kotlinx.serialization.json.jsonPrimitive
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -11,7 +11,7 @@ import org.threeten.bp.Duration
 
 internal class DurationSerializerTest {
 
-    private val json = Json
+    private val json = ScheduleJson.create()
 
     @ParameterizedTest
     @CsvSource(

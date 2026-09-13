@@ -1,13 +1,13 @@
 package info.metadude.kotlin.library.schedule.v1.serializers
 
 import com.google.common.truth.Truth.assertThat
-import kotlinx.serialization.json.Json
+import info.metadude.kotlin.library.schedule.ScheduleJson
 import org.junit.jupiter.api.Test
 import kotlin.uuid.Uuid
 
 internal class RoomsSerializerTest {
 
-    private val json = Json { ignoreUnknownKeys = true }
+    private val json = ScheduleJson.create()
 
     @Test
     fun `deserialize skips events that fail decoding`() {

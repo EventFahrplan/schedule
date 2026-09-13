@@ -1,6 +1,7 @@
 package info.metadude.kotlin.library.schedule.v1.serializers
 
 import com.google.common.truth.Truth.assertThat
+import info.metadude.kotlin.library.schedule.ScheduleJson
 import info.metadude.kotlin.library.schedule.v1.models.ResourceType
 import info.metadude.kotlin.library.schedule.v1.models.ResourceType.ACTIVITY_PUB
 import info.metadude.kotlin.library.schedule.v1.models.ResourceType.ARTICLE
@@ -11,7 +12,6 @@ import info.metadude.kotlin.library.schedule.v1.models.ResourceType.RELATED
 import info.metadude.kotlin.library.schedule.v1.models.ResourceType.SLIDES
 import info.metadude.kotlin.library.schedule.v1.models.ResourceType.UNKNOWN
 import info.metadude.kotlin.library.schedule.v1.models.ResourceType.WEB
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonPrimitive
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -19,7 +19,7 @@ import org.junit.jupiter.params.provider.EnumSource
 
 internal class ResourceTypeSerializerTest {
 
-    private val json = Json
+    private val json = ScheduleJson.create()
 
     @ParameterizedTest
     @EnumSource(ResourceType::class)
