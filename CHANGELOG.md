@@ -1,5 +1,14 @@
 # Schedule changelog
 
+## NEXT
+
+* Not published yet.
+
+### Changes
+
+* Fix showing exact line of failure in `ProductionApiTest`.
+
+
 ## [v.2.0.0](https://github.com/EventFahrplan/schedule/releases/tag/v.2.0.0)
 
 * Published: 2026-05-27

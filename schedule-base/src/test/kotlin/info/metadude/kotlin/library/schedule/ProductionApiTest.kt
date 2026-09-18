@@ -41,7 +41,7 @@ internal class ProductionApiTest {
                 }
             }
         } catch (t: Throwable) {
-            fail("Should not throw $t")
+            fail("Should not throw", t)
         }
     }
 
