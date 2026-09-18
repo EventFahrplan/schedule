@@ -22,7 +22,7 @@ import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.ZoneId
 import kotlin.uuid.Uuid
 
-internal class ScheduleServiceTest {
+internal class ScheduleV1ServiceTest {
 
     private lateinit var server: MockWebServer
     private lateinit var service: ScheduleService
@@ -41,7 +41,7 @@ internal class ScheduleServiceTest {
     @Test
     fun `getScheduleV1 parses JSON with conference days rooms and events`() = runTest {
         val json = javaClass.classLoader!!
-            .getResourceAsStream("schedule_fixture.json")!!
+            .getResourceAsStream("schedule_v1_minor.json")!!
             .bufferedReader()
             .readText()
 

@@ -6,9 +6,9 @@ import info.metadude.kotlin.library.schedule.Logging.Companion.None
 import info.metadude.kotlin.library.schedule.ScheduleApi
 import info.metadude.kotlin.library.schedule.repositories.ScheduleRepository
 import info.metadude.kotlin.library.schedule.repositories.models.GetScheduleV1State
-import info.metadude.kotlin.library.schedule.repositories.models.GetScheduleV1State.Error
-import info.metadude.kotlin.library.schedule.repositories.models.GetScheduleV1State.Failure
-import info.metadude.kotlin.library.schedule.repositories.models.GetScheduleV1State.Success
+import info.metadude.kotlin.library.schedule.repositories.models.GetScheduleV1State.Error as ErrorV1
+import info.metadude.kotlin.library.schedule.repositories.models.GetScheduleV1State.Failure as FailureV1
+import info.metadude.kotlin.library.schedule.repositories.models.GetScheduleV1State.Success as SuccessV1
 import info.metadude.kotlin.library.schedule.repositories.utils.UrlComponents.Companion.getUrlComponents
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -44,12 +44,12 @@ class SimpleScheduleRepository(
                 if (response.isSuccessful) {
                     val body = response.body()
                     if (body == null) {
-                        Error(
+                        ErrorV1(
                             httpStatusCode = response.code(),
                             errorMessage = response.message().orEmpty(),
                         )
                     } else {
-                        Success(
+                        SuccessV1(
                             scheduleV1 = body,
                             responseETag = response.headers()[HEADER_NAME_ETAG].orEmpty(),
                             responseLastModifiedAt = response.headers()[HEADER_NAME_LAST_MODIFIED].orEmpty(),
@@ -57,13 +57,13 @@ class SimpleScheduleRepository(
                     }
                 } else {
                     val errorMessage = response.errorBody()?.string() ?: response.message().orEmpty()
-                    Error(
+                    ErrorV1(
                         httpStatusCode = response.code(),
                         errorMessage = errorMessage,
                     )
                 }
             } catch (t: Throwable) {
-                Failure(throwable = t)
+                FailureV1(throwable = t)
             }
             emit(emission)
         }
