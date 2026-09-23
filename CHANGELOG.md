@@ -6,6 +6,7 @@
 
 ### Changes
 
+* Move inline JSON fixtures for schedule v1 into files.
 * Restructure schedule v1 related files and classes to add schedule version 2.
 * Fix showing exact line of failure in `ProductionApiTest`.
 

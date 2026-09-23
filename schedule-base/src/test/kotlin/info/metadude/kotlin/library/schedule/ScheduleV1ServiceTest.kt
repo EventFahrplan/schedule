@@ -155,31 +155,7 @@ internal class ScheduleV1ServiceTest {
 
     @Test
     fun `getSchedule parses conference start and end as date-only values`() = runTest {
-        val json = """
-            {
-              "schedule": {
-                "version": "test",
-                "conference": {
-                  "acronym": "demo",
-                  "title": "Demo",
-                  "start": "2025-01-01",
-                  "end": "2025-01-02",
-                  "daysCount": 1,
-                  "timeslot_duration": "00:10",
-                  "days": [
-                    {
-                      "index": 1,
-                      "date": "2025-01-01",
-                      "day_start": "2025-01-01T09:00:00+00:00",
-                      "day_end": "2025-01-01T18:00:00+00:00",
-                      "rooms": {}
-                    }
-                  ]
-                }
-              }
-            }
-        """.trimIndent()
-
+        val json = loadJsonFile("schedule_v1_date_only_conference.json")
         server.enqueue(createResponse(json))
         val response = service.getScheduleV1("")
         assertThat(response.isSuccessful).isTrue()
@@ -194,67 +170,7 @@ internal class ScheduleV1ServiceTest {
 
     @Test
     fun `getSchedule maps unknown enum values to UNKNOWN`() = runTest {
-        val json = """
-            {
-              "schedule": {
-                "version": "test",
-                "conference": {
-                  "acronym": "demo",
-                  "title": "Demo",
-                  "start": "2025-01-01T00:00:00+00:00",
-                  "end": "2025-01-02T00:00:00+00:00",
-                  "daysCount": 1,
-                  "timeslot_duration": "00:10",
-                  "rooms": [
-                    {
-                      "name": "Mystery",
-                      "guid": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
-                      "type": "spaceship",
-                      "features": {
-                        "recording": "recording_magic"
-                      }
-                    }
-                  ],
-                  "days": [
-                    {
-                      "index": 1,
-                      "date": "2025-01-01",
-                      "day_start": "2025-01-01T09:00:00+00:00",
-                      "day_end": "2025-01-01T18:00:00+00:00",
-                      "rooms": {
-                        "Mystery": [
-                          {
-                            "guid": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
-                            "id": 1,
-                            "date": "2025-01-01T10:00:00+00:00",
-                            "start": "10:00",
-                            "duration": "00:30",
-                            "room": "Mystery",
-                            "slug": "mystery",
-                            "title": "Mystery",
-                            "subtitle": null,
-                            "track": null,
-                            "type": "other",
-                            "language": null,
-                            "abstract": null,
-                            "persons": [],
-                            "links": [
-                              {
-                                "url": "https://example.com/ref",
-                                "type": "mystery"
-                              }
-                            ],
-                            "url": "https://example.com/event"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-        """.trimIndent()
-
+        val json = loadJsonFile("schedule_v1_unknown_enum_values.json")
         server.enqueue(createResponse(json))
         val response = service.getScheduleV1("")
         assertThat(response.isSuccessful).isTrue()
@@ -267,57 +183,7 @@ internal class ScheduleV1ServiceTest {
 
     @Test
     fun `getSchedule skips events missing mandatory fields`() = runTest {
-        val json = """
-            {
-              "schedule": {
-                "version": "test",
-                "conference": {
-                  "acronym": "demo",
-                  "title": "Demo",
-                  "start": "2025-01-01T00:00:00+00:00",
-                  "end": "2025-01-02T00:00:00+00:00",
-                  "daysCount": 1,
-                  "timeslot_duration": "00:10",
-                  "days": [
-                    {
-                      "index": 1,
-                      "date": "2025-01-01",
-                      "day_start": "2025-01-01T09:00:00+00:00",
-                      "day_end": "2025-01-01T18:00:00+00:00",
-                      "rooms": {
-                        "One": [
-                          {
-                            "id": 1,
-                            "date": "2025-01-01T10:00:00+00:00",
-                            "start": "10:00",
-                            "duration": "00:30",
-                            "room": "One",
-                            "slug": "missing-guid",
-                            "title": "Missing guid",
-                            "type": "talk",
-                            "url": "https://example.com/missing-guid"
-                          },
-                          {
-                            "guid": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
-                            "id": 2,
-                            "date": "2025-01-01T11:00:00+00:00",
-                            "start": "11:00",
-                            "duration": "00:30",
-                            "room": "One",
-                            "slug": "valid",
-                            "title": "Valid",
-                            "type": "talk",
-                            "url": "https://example.com/valid"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-        """.trimIndent()
-
+        val json = loadJsonFile("schedule_v1_missing_event_guid.json")
         server.enqueue(createResponse(json))
         val response = service.getScheduleV1("")
         assertThat(response.isSuccessful).isTrue()
