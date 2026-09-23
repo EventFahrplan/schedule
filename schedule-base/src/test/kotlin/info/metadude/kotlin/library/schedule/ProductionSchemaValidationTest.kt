@@ -10,18 +10,18 @@ import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import org.junit.jupiter.api.Assertions.fail
 import org.junit.jupiter.api.Assumptions.assumeTrue
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 internal class ProductionSchemaValidationTest {
 
     private companion object {
-        const val BASE_URL = "https://fahrplan.events.ccc.de/congress/2025/fahrplan/schedules/"
-        const val SCHEDULE_PATH = "schedule.json"
+        const val SCHEDULE_V1_URL = "https://fahrplan.events.ccc.de/congress/2025/fahrplan/schedules/schedule.json"
     }
 
-    @Test
-    fun `production schedule validates against its schema`() = runTest {
-        val scheduleUrl = "$BASE_URL$SCHEDULE_PATH"
+    @ParameterizedTest(name = "{0}")
+    @ValueSource(strings = [SCHEDULE_V1_URL])
+    fun `production schedule validates against its schema`(scheduleUrl: String) = runTest {
         val scheduleJson = httpClient
             .newCall(Request.Builder().url(scheduleUrl).build())
             .execute()
@@ -46,7 +46,7 @@ internal class ProductionSchemaValidationTest {
 
         assumeTrue(errors.isEmpty()) {
             val summary = errors.take(10).joinToString("\n") { "${it.instanceLocation}: ${it.message}" }
-            "Skipping: live production JSON has ${errors.size} validation error(s) vs remote $schemaUrl (often drifts). First 10:\n$summary"
+            "Skipping: live production JSON at $scheduleUrl has ${errors.size} validation error(s) vs remote $schemaUrl (often drifts). First 10:\n$summary"
         }
     }
 
@@ -62,5 +62,4 @@ internal class ProductionSchemaValidationTest {
     private val jsonSchemaFactory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V6)
 
 }
-
 
