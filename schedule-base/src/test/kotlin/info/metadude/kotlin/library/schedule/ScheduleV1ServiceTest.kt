@@ -1,6 +1,7 @@
 package info.metadude.kotlin.library.schedule
 
 import com.google.common.truth.Truth.assertThat
+import info.metadude.kotlin.library.schedule.utils.loadJsonFile
 import info.metadude.kotlin.library.schedule.v1.models.ConferenceDate
 import info.metadude.kotlin.library.schedule.v1.models.RecordingMode
 import info.metadude.kotlin.library.schedule.v1.models.ResourceType
@@ -40,11 +41,7 @@ internal class ScheduleV1ServiceTest {
 
     @Test
     fun `getScheduleV1 parses JSON with conference days rooms and events`() = runTest {
-        val json = javaClass.classLoader!!
-            .getResourceAsStream("schedule_v1_minor.json")!!
-            .bufferedReader()
-            .readText()
-
+        val json = loadJsonFile("schedule_v1_minor.json")
         server.enqueue(createResponse(json))
         val response = service.getScheduleV1("schedule.json")
         assertThat(response.isSuccessful).isTrue()
