@@ -10,7 +10,7 @@ retrofit = "3.0.0"
 threetenbp = "1.7.2"
 truth = "1.4.5"
 turbine = "1.2.1"
-versions = "0.53.0"
+versions = "0.64.0"
 jsonSchemaValidator = "1.5.6"
 
 [libraries]
@@ -42,4 +42,4 @@ testEcosystem = ["junitJupiterParams", "kotlinxCoroutinesTest", "mockitoKotlin",
 [plugins]
 kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 mavenPublish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
-versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }
+versions = { id = "io.github.ben-manes.versions", version.ref = "versions" }
