@@ -1,0 +1,22 @@
+{
+  "schedule": {
+    "version": "test",
+    "conference": {
+      "acronym": "demo",
+      "title": "Demo",
+      "start": "2025-01-01",
+      "end": "2025-01-02",
+      "daysCount": 1,
+      "timeslot_duration": "00:10",
+      "days": [
+        {
+          "index": 1,
+          "date": "2025-01-01",
+          "day_start": "2025-01-01T09:00:00+00:00",
+          "day_end": "2025-01-01T18:00:00+00:00",
+          "rooms": {}
+        }
+      ]
+    }
+  }
+}

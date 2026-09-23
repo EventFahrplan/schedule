@@ -1,5 +1,16 @@
 # Schedule changelog
 
+## NEXT
+
+* Not published yet.
+
+### Changes
+
+* Move inline JSON fixtures for schedule v1 into files.
+* Restructure schedule v1 related files and classes to add schedule version 2.
+* Fix showing exact line of failure in `ProductionApiTest`.
+
+
 ## [v.2.0.0](https://github.com/EventFahrplan/schedule/releases/tag/v.2.0.0)
 
 * Published: 2026-05-27

@@ -16,7 +16,7 @@ import org.mockito.kotlin.any
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 
-internal class SimpleScheduleRepositoryTest {
+internal class SimpleScheduleV1RepositoryTest {
 
     private companion object {
         const val VALID_URL = "https://example.com/schedule.json"

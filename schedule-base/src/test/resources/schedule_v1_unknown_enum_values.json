@@ -1,0 +1,51 @@
+{
+  "schedule": {
+    "version": "test",
+    "conference": {
+      "acronym": "demo",
+      "title": "Demo",
+      "start": "2025-01-01T00:00:00+00:00",
+      "end": "2025-01-02T00:00:00+00:00",
+      "daysCount": 1,
+      "timeslot_duration": "00:10",
+      "rooms": [
+        {
+          "name": "Mystery",
+          "guid": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+          "type": "spaceship",
+          "features": { "recording": "recording_magic" }
+        }
+      ],
+      "days": [
+        {
+          "index": 1,
+          "date": "2025-01-01",
+          "day_start": "2025-01-01T09:00:00+00:00",
+          "day_end": "2025-01-01T18:00:00+00:00",
+          "rooms": {
+            "Mystery": [
+              {
+                "guid": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+                "id": 1,
+                "date": "2025-01-01T10:00:00+00:00",
+                "start": "10:00",
+                "duration": "00:30",
+                "room": "Mystery",
+                "slug": "mystery",
+                "title": "Mystery",
+                "subtitle": null,
+                "track": null,
+                "type": "other",
+                "language": null,
+                "abstract": null,
+                "persons": [],
+                "links": [{ "url": "https://example.com/ref", "type": "mystery" }],
+                "url": "https://example.com/event"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

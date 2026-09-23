@@ -18,7 +18,7 @@ import org.threeten.bp.LocalTime
 import org.threeten.bp.OffsetDateTime
 import kotlin.uuid.Uuid
 
-internal class ProductionApiTest {
+internal class ProductionApiV1Test {
 
     companion object {
         const val BASE_URL = "https://fahrplan.events.ccc.de/congress/2025/fahrplan/schedules/"
@@ -41,7 +41,7 @@ internal class ProductionApiTest {
                 }
             }
         } catch (t: Throwable) {
-            fail("Should not throw $t")
+            fail("Should not throw", t)
         }
     }
 
