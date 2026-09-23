@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.3.20"
-kotlinxSerializationJson = "1.10.0"
+kotlinxSerializationJson = "1.11.0"
 kotlinxCoroutines = "1.11.0"
 junitJupiterParams = "6.1.3"
 mavenPublish = "0.37.0"

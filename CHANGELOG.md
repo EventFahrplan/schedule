@@ -6,6 +6,7 @@
 
 ### Changes
 
+* `org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0`
 * `org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0`
 * `org.threeten:threetenbp:1.7.4`
 * Move inline JSON fixtures for schedule v1 into files.
