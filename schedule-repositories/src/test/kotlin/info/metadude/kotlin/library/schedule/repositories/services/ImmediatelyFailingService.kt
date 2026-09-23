@@ -5,6 +5,7 @@ import info.metadude.kotlin.library.schedule.v1.models.ScheduleV1
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Response
+import retrofit2.Response.error
 
 internal class ImmediatelyFailingService : ScheduleService {
 
@@ -12,8 +13,10 @@ internal class ImmediatelyFailingService : ScheduleService {
         path: String,
         eTag: String?,
         lastModifiedAt: String?,
-    ): Response<ScheduleV1> {
+    ): Response<ScheduleV1> = errorResponse()
+
+    private fun <Schedule> errorResponse(): Response<Schedule> {
         val responseBody = "Service Unavailable.".toResponseBody("plain/text".toMediaType())
-        return Response.error(503, responseBody)
+        return error(503, responseBody)
     }
 }
