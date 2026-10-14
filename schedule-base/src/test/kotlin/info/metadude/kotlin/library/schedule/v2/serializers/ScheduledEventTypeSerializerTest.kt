@@ -5,6 +5,7 @@ import info.metadude.kotlin.library.schedule.v2.models.ScheduledEventType
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.jsonPrimitive
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.EnumSource
 import org.junit.jupiter.params.provider.ValueSource
@@ -16,7 +17,7 @@ internal class ScheduledEventTypeSerializerTest {
     @ParameterizedTest
     @EnumSource(ScheduledEventType::class)
     fun `serialize returns corresponding string value`(value: ScheduledEventType) {
-        val expected = value.name
+        val expected = if (value == ScheduledEventType.HANDS_ON) "HANDS-ON" else value.name
         val actual = json.encodeToJsonElement(ScheduledEventTypeSerializer, value).jsonPrimitive.content
         assertThat(actual).isEqualTo(expected)
     }
@@ -24,13 +25,19 @@ internal class ScheduledEventTypeSerializerTest {
     @ParameterizedTest
     @EnumSource(ScheduledEventType::class)
     fun `deserialize returns corresponding ScheduledEventType value`(expected: ScheduledEventType) {
-        val wire = expected.name
+        val wire = if (expected == ScheduledEventType.HANDS_ON) "HANDS-ON" else expected.name
         val actual = json.decodeFromJsonElement(ScheduledEventTypeSerializer, JsonPrimitive(wire))
         assertThat(actual).isEqualTo(expected)
     }
 
+    @Test
+    fun `deserialize maps legacy HANDS_ON to HANDS_ON`() {
+        val actual = json.decodeFromJsonElement(ScheduledEventTypeSerializer, JsonPrimitive("HANDS_ON"))
+        assertThat(actual).isEqualTo(ScheduledEventType.HANDS_ON)
+    }
+
     @ParameterizedTest
-    @ValueSource(strings = ["invalid", "", "talk"])
+    @ValueSource(strings = ["invalid", "", "talk", "hands-on"])
     fun `deserialize maps unknown string to UNKNOWN`(wire: String) {
         val actual = json.decodeFromJsonElement(ScheduledEventTypeSerializer, JsonPrimitive(wire))
         assertThat(actual).isEqualTo(ScheduledEventType.UNKNOWN)

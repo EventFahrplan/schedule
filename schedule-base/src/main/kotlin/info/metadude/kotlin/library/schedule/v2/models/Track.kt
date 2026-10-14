@@ -6,7 +6,6 @@ import kotlin.uuid.Uuid
 
 @Serializable
 data class Track(
-    val color: String? = null,
     val colors: TrackColors? = null,
     @Serializable(with = UuidSerializer::class)
     val guid: Uuid? = null,

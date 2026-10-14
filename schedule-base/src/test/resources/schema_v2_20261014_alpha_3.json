@@ -1,0 +1,648 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$id": "https://c3voc.de/schema/schedule2",
+  "version": "alpha-3",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schedule": {
+      "$ref": "#/definitions/Schedule"
+    },
+    "$schema": {
+      "type": "string"
+    },
+    "generator": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    }
+  },
+  "required": ["schedule"],
+  "definitions": {
+    "Schedule": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "conference": {
+          "$ref": "#/definitions/Conference"
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "$ref": "#/definitions/Event" },
+              { "$ref": "#/definitions/MetaEvent" }
+            ]
+          }
+        }
+      },
+      "required": ["conference", "version"]
+    },
+    "Conference": {
+      "type": "object",
+      "title": "Conference",
+      "required": [
+        "title",
+        "acronym",
+        "days",
+        "start",
+        "end"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "acronym": {
+          "type": "string",
+          "examples": ["36c3", "rc3", "divoc-ptt"],
+          "pattern": "^[a-z0-9_-][a-z0-9_]{3,}(-2[0-9]{3}-[a-z]+)?$"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "$ref": "#/definitions/LocalizableString"
+        },
+        "start": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "timeslot_duration": {
+          "$ref": "#/definitions/Duration"
+        },
+        "time_zone_name": {
+          "type": "string",
+          "examples": ["Europe/Amsterdam", "Europe/Berlin", "UTC"],
+          "pattern": "^([A-Z][a-z]+/[A-Z][a-z]+)|UTC$"
+        },
+        "logo": {
+          "$ref": "#/definitions/Image"
+        },
+        "colors": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "primary": {
+              "type": "string",
+              "format": "color"
+            },
+            "background": {
+              "type": "string",
+              "format": "color"
+            }
+          }
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "url": {
+          "description": "URL to the conference schedule or public website",
+          "type": "string",
+          "format": "uri"
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$ref": "#/definitions/Language"
+          }
+        },
+        "defaults": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "theme": {
+              "type": "string",
+              "enum": ["light", "dark"]
+            },
+            "language": {
+              "type": "string",
+              "$ref": "#/definitions/Language"
+            }
+          }
+        },
+        "tracks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "$TODO": "Maintrack, DevRoom, Exams, BoF/SoS, etc. ?"
+              },
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "$ref": "#/definitions/Slug"
+              },
+              "color": {
+                "type": "string",
+                "format": "color"
+              },
+              "colors": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "light": {
+                    "type": "string",
+                    "format": "color"
+                  },
+                  "dark": {
+                    "type": "string",
+                    "format": "color"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "rooms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Room"
+          }
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "days": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Day"
+          }
+        }
+      }
+    },
+    "Day": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "index": {
+          "type": "integer"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "start": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["date", "end", "start", "index"]
+    },
+    "Event": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "guid": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "code": {
+          "type": "string",
+          "pattern": "^[A-Z0-9]+$"
+        },
+        "logo": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/definitions/Image" }
+          ]
+        },
+        "start": {
+          "type": "string",
+          "format": "date-time",
+          "examples": ["2020-12-14T09:00:00+01:00"]
+        },
+        "end": {
+          "type": "string",
+          "format": "date-time",
+          "examples": ["2020-12-14T10:00:00+01:00"]
+        },
+        "duration": {
+          "$ref": "#/definitions/Duration",
+          "deprecated": true,
+          "$comment": "For scheduled events, use end instead"
+        },
+        "room": {
+          "$ref": "#/definitions/RoomReference"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": ["string", "null"]
+        },
+        "track": {
+          "$ref": "#/definitions/TrackReference"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "TALK",
+            "WORKSHOP",
+            "HANDS-ON",
+            "MEETING",
+            "DISCUSSION",
+            "PERFORMANCE",
+            "CONCERT",
+            "GAME",
+            "LIGHTNING_TALK",
+            "OTHER"
+          ]
+        },
+        "language": {
+          "$ref": "#/definitions/Language"
+        },
+        "abstract": {
+          "$ref": "#/definitions/LocalizableString"
+        },
+        "description": {
+          "$ref": "#/definitions/LocalizableString"
+        },
+        "participants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EventParticipant"
+          }
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Reference"
+          }
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Reference"
+          }
+        },
+        "state": {
+          "type": "string",
+          "description": "Current state of the event, e.g. during submission phase, or the actual conference. It represents the current state of the event in the real world e.g. when it got canceled or delayed.",
+          "default": "CONFIRMED",
+          "enum": [
+            "DRAFT",
+            "SUBMITTED",
+            "ACCEPTED",
+            "REJECTED",
+            "CONFIRMED",
+            "DELAYED",
+            "CANCELED",
+            "WITHDRAWN",
+            "DELETED"
+          ]
+        }
+      },
+      "required": [
+        "abstract",
+        "guid",
+        "language",
+        "links",
+        "participants",
+        "room",
+        "slug",
+        "start",
+        "end",
+        "subtitle",
+        "title",
+        "track",
+        "type",
+        "url"
+      ]
+    },
+    "EventParticipant": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "title": "Main role of this person at the event",
+          "type": "string",
+          "default": "SPEAKER",
+          "enum": [
+            "SPEAKER",
+            "MODERATOR",
+            "CONTRIBUTOR",
+            "HOST",
+            "GUEST"
+          ]
+        },
+        "guid": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Person UUID generated from email address via uuid5(NS_URL, 'acct:user@domain.tld') or random uuid4() if email not available"
+        }
+      },
+      "required": ["guid", "name"]
+    },
+    "MetaEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end", "title", "type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "BREAK",
+            "META"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "guid": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "start": {
+          "type": "string",
+          "format": "date-time",
+          "examples": [
+            "2020-12-14T09:00:00+01:00"
+          ]
+        },
+        "end": {
+          "type": "string",
+          "format": "date-time",
+          "examples": [
+            "2020-12-14T10:00:00+01:00"
+          ]
+        },
+        "room": {
+          "$TODO": "should we allow multiple rooms for meta events?",  
+          "$ref": "#/definitions/RoomReference"
+        }
+      }
+    },
+    "Person": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "guid": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Person UUID generated from email address via uuid5(NS_URL, 'acct:user@domain.tld') or random uuid4() if email not available"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Reference"
+          }
+        }
+      }
+    },
+    "RoomGrouping": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "examples": ["Assembly", "Village", "Cluster", "Habitat", "Building", "Floor", "Area", "Other"]
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "guid": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": ["name", "guid", "slug"]
+    },
+    "Room": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["LECTURE_HALL", "STAGE", "WORKSHOP", "OUTSIDE", "VIRTUAL", "PROJECT", "HANGAR", "OTHER"]
+        },
+        "guid": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "stream_id": {
+          "type": ["string", "null"]
+        },
+        "description": {
+          "$ref": "#/definitions/LocalizableString"
+        },
+        "capacity": {
+          "type": ["number", "null"]
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "features": {
+          "$ref": "#/definitions/RoomFeatures"
+        },
+        "parent": {
+          "$oneOf": [
+            { "$ref": "#/definitions/RoomReference" },
+            { "$ref": "#/definitions/RoomGrouping" }
+          ]
+        }
+      },
+      "required": ["name", "guid"]
+    },
+    "RoomReference": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        },
+        "guid": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": ["guid"]
+    },
+    "RoomFeatures": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "recording": {
+          "type": "string",
+          "enum": [
+            "RECORD_BY_DEFAULT", 
+            "NOT_RECORDED_BY_DEFAULT", 
+            "RECORDING_FORBIDDEN", 
+            "RECORDING_NOT_POSSIBLE", 
+            "UNKNOWN"
+          ]
+        }
+      }
+    },
+    "Duration": {
+      "title": "Duration (ISO8601)",
+      "type": "string",
+      "examples": ["PT15M", "PT1H30M"],
+      "pattern": "^P(?!$)(?:\\d+Y)?(?:\\d+M)?(?:\\d+W)?(?:\\d+D)?(?:T(?=\\d)(?:\\d+H)?(?:\\d+M)?(?:\\d+(?:\\.\\d+)?S)?)?$"
+    },
+    "Language": {
+      "title": "ISO 639-1 language code",
+      "type": "string",
+      "examples": ["en", "de"],
+      "pattern": "^[a-z]{2}$",
+      "$TODO": "Should we add an enum list of language codes here?"
+    },
+    "Reference": {
+      "title": "Link or Attachment",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "SLIDES",
+            "PAPER",
+            "WEB",
+            "BLOG",
+            "ARTICLE",
+            "BOOK",
+            "MEDIA",
+            "RELATED",
+            "FEEDBACK",
+            "ORIGIN",
+            "ACTIVITYPUB"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "title": {
+          "type": "string"
+        },
+        "service": {
+          "oneOf": [
+            { "$ref": "#/definitions/ResourceHostingService" },
+            { "$ref": "#/definitions/SocialMediaService" },
+            { "$ref": "#/definitions/VideoMediaService" }
+          ]
+        }
+      },
+      "required": ["url"]
+    },
+    "Slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+[a-z0-9]$"
+    },
+    "SocialMediaService": {
+      "type": "string",
+      "enum": ["MASTODON", "BLUESKY", "INSTAGRAM", "THREADS", "TWITTER"]
+    },
+    "ResourceHostingService": {
+      "type": "string",
+      "enum": ["FORGEJO", "GITHUB", "GITLAB"]
+    },
+    "VideoMediaService": {
+      "type": "string",
+      "enum": ["MEDIACCCDE", "PEERTUBE"]
+    },
+    "TrackReference": {
+      "type": "object",
+      "properties": {
+        "slug": {
+          "$ref": "#/definitions/Slug"
+        }
+      },
+      "required": ["slug"]
+    },
+    "Image": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "value": "Image"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": ["url"]
+    },
+    "LocalizableString": {
+      "oneOf": [
+        { "type": "null" },
+        { "type": "string" },
+        { "$ref": "#/definitions/LocalizationMap" }
+      ]
+    },
+    "LocalizationMap": {
+      "type": "object",
+      "additionalProperties": false,
+      "examples": [{
+        "de": "Das Opening gibt euch die wichtigsten Infos für den Congress…", 
+        "en": "The Opening covers everything you need to know about the Congress…"
+      }],
+      "patternProperties": {
+        "^[a-z]{2}$": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

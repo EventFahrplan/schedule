@@ -39,6 +39,7 @@ import info.metadude.kotlin.library.schedule.v2.models.ScheduleV2 as ScheduleV2M
 import info.metadude.kotlin.library.schedule.v2.models.ScheduledEvent as ScheduledEventV2
 import info.metadude.kotlin.library.schedule.v2.models.ScheduledEventType as ScheduledEventTypeV2
 import info.metadude.kotlin.library.schedule.v2.models.Theme as ThemeV2
+import info.metadude.kotlin.library.schedule.v2.models.TimeZone as TimeZoneV2
 import info.metadude.kotlin.library.schedule.v2.models.Track as TrackV2
 import info.metadude.kotlin.library.schedule.v2.models.TrackReference as TrackReferenceV2
 
@@ -123,8 +124,7 @@ internal class ImmediatelySucceedingService : ScheduleService {
                     description = LocalizableStringV2.Text("Test description"),
                     start = OffsetDateTime.parse("2025-01-01T00:00:00+00:00"),
                     end = OffsetDateTime.parse("2025-01-02T00:00:00+00:00"),
-                    timeslotDuration = ScheduleDurationV2("PT10M"),
-                    timeZoneName = ZoneId.of("UTC"),
+                    timeZone = TimeZoneV2(ZoneId.of("UTC")),
                     url = "https://example.com/",
                     defaults = ConferenceDefaultsV2(theme = ThemeV2.DARK, language = "en"),
                     tracks = listOf(

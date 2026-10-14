@@ -5,6 +5,7 @@ import com.google.common.truth.Truth.assertThat
 import info.metadude.kotlin.library.schedule.v2.models.Conference
 import info.metadude.kotlin.library.schedule.v2.models.ConferenceColors
 import info.metadude.kotlin.library.schedule.v2.models.ConferenceDefaults
+import info.metadude.kotlin.library.schedule.v2.models.TimeZone
 import info.metadude.kotlin.library.schedule.v2.models.Day
 import info.metadude.kotlin.library.schedule.v2.models.Event
 import info.metadude.kotlin.library.schedule.v2.models.EventParticipant
@@ -53,7 +54,7 @@ internal class ProductionApiV2Test {
     companion object {
         // https://gist.github.com/johnjohndoe/c84a5bd30d5be2777cb583ee5769959c
         const val BASE_URL =
-            "https://gist.githubusercontent.com/johnjohndoe/c84a5bd30d5be2777cb583ee5769959c/raw/169d1f47a19901d0d079ff00f0b2e34d78edd329/"
+            "https://gist.githubusercontent.com/johnjohndoe/c84a5bd30d5be2777cb583ee5769959c/raw/9d4e8ce5830bd67c01a36a5d12a9e21f3993b39b/"
         const val SCHEDULE_PATH = "39c3-schedule2.json"
     }
 
@@ -142,14 +143,17 @@ internal class ProductionApiV2Test {
         assertThat(conference.rooms).isNotNull()
         assertThat(conference.start).isNotNull()
         assertThat(conference.start).isOffsetDateTime()
-        conference.timeslotDuration?.let {
-            assertScheduleDuration(it)
+        conference.timeZone?.let {
+            assertTimeZone(it)
         }
-        assertThat(conference.timeZoneName).isNotNull()
-        assertThat(conference.timeZoneName).isZoneId()
         assertThat(conference.title).isNotEmpty()
         assertThat(conference.tracks).isNotNull()
         assertThat(conference.url).isNotNull()
+    }
+
+    private fun assertTimeZone(timeZone: TimeZone) {
+        assertThat(timeZone.name).isNotNull()
+        assertThat(timeZone.name).isZoneId()
     }
 
     private fun assertConferenceColors(conferenceColors: ConferenceColors) {
@@ -240,7 +244,6 @@ internal class ProductionApiV2Test {
 
     private fun assertTrack(track: Track) {
         assertThat(track).isNotNull()
-        assertThat(track.color).isNotNull()
         track.colors?.let {
             assertTrackColors(it)
         }
