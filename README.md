@@ -2,7 +2,8 @@
 
 # Schedule library
 
-A Kotlin library containing a parser and models for Frab-compatible conference schedule JSON (version 1), as used by apps such as:
+A Kotlin library containing parsers and models for Frab-compatible conference
+schedule JSON versions 1 and 2, as used by apps such as:
 
 * https://github.com/EventFahrplan/EventFahrplan
 
@@ -14,8 +15,11 @@ You can use either of them depending on your needs.
 
 ### Usage of `schedule-base`
 
-The `schedule-base` artifact returns a `Response<ScheduleV1>` type
-from the suspending `ScheduleService#getScheduleV1` function.
+The `schedule-base` artifact provides Retrofit services for both schedule
+formats. The suspending `ScheduleService#getScheduleV1` and
+`ScheduleService#getScheduleV2` functions return `Response<ScheduleV1>` and
+`Response<ScheduleV2>`, respectively. Choose the function that matches the
+JSON format served by the conference.
 
 ```kotlin
 suspend fun loadSchedule(okHttpClient: Call.Factory, logging: Logging) {
@@ -47,8 +51,11 @@ suspend fun loadSchedule(okHttpClient: Call.Factory, logging: Logging) {
 
 ### Usage of `schedule-repositories`
 
-The `schedule-repositories` artifact returns a `Flow<GetScheduleV1State>` type
-from the suspending `ScheduleRepository#getScheduleV1State` function.
+The `schedule-repositories` artifact provides a `Flow`-based API for both
+formats. Call `ScheduleRepository#getScheduleV1State` for v1
+(`Flow<GetScheduleV1State>`) or `ScheduleRepository#getScheduleV2State` for
+v2 (`Flow<GetScheduleV2State>`). The simple repository implementation is
+`SimpleScheduleRepository`.
 
 ```kotlin
 suspend fun loadSchedule(okHttpClient: Call.Factory, logging: Logging) {
@@ -82,6 +89,20 @@ suspend fun loadSchedule(okHttpClient: Call.Factory, logging: Logging) {
     }
 }
 ```
+
+The v2 model is available under
+`info.metadude.kotlin.library.schedule.v2.models`. It represents scheduled
+events and meta events separately, supports localized strings and v2 date and
+time types, ignores unknown JSON object keys, and maps unrecognized enum
+values to `UNKNOWN` where the format defines an enum fallback. Missing
+required fields still cause parsing to fail.
+
+To use v2 with `schedule-base`, call `ScheduleService#getScheduleV2`, which
+returns `Response<ScheduleV2>`. To use v2 with `schedule-repositories`, call
+`ScheduleRepository#getScheduleV2State`, which returns
+`Flow<GetScheduleV2State>`. Its `Success` state exposes `scheduleV2`, and its
+`Error` and `Failure` states report HTTP errors and thrown exceptions,
+respectively.
 
 
 ## Gradle build

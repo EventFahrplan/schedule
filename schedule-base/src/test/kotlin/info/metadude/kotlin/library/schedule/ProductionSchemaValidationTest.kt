@@ -17,10 +17,11 @@ internal class ProductionSchemaValidationTest {
 
     private companion object {
         const val SCHEDULE_V1_URL = "https://fahrplan.events.ccc.de/congress/2025/fahrplan/schedules/schedule.json"
+        const val SCHEDULE_V2_URL = "https://hub.test.c3voc.de/api/schedule2.json"
     }
 
     @ParameterizedTest(name = "{0}")
-    @ValueSource(strings = [SCHEDULE_V1_URL])
+    @ValueSource(strings = [SCHEDULE_V1_URL, SCHEDULE_V2_URL])
     fun `production schedule validates against its schema`(scheduleUrl: String) = runTest {
         val scheduleJson = httpClient
             .newCall(Request.Builder().url(scheduleUrl).build())
