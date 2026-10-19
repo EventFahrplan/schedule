@@ -8,7 +8,7 @@
 
 * `com.squareup.okhttp3:okhttp:5.5.0`
 * `org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.21`
-* `org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0`
+* `org.jetbrains.kotlinx:kotlinx-serialization-json:1.12.0`
 * `org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0`
 * `org.threeten:threetenbp:1.7.5`
 * Move inline JSON fixtures for schedule v1 into files.
