@@ -6,7 +6,7 @@
 
 ### Changes
 
-* `com.squareup.okhttp3:okhttp:5.4.0` - compileSdk 37 is required as of 5.5.0
+* `com.squareup.okhttp3:okhttp:5.5.0`
 * `org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.21`
 * `org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0`
 * `org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0`
