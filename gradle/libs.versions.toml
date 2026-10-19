@@ -1,16 +1,16 @@
 [versions]
-kotlin = "2.4.20"
-kotlinxSerializationJson = "1.11.0"
+kotlin = "2.4.21"
+kotlinxSerializationJson = "1.12.0"
 kotlinxCoroutines = "1.11.0"
 junitJupiterParams = "6.1.3"
 mavenPublish = "0.37.0"
 mockitoKotlin = "6.4.0"
-okhttp = "5.4.0" # compileSdk 37 is required as of 5.5.0
+okhttp = "5.5.0"
 retrofit = "3.0.0"
-threetenbp = "1.7.4"
+threetenbp = "1.7.5"
 truth = "1.4.5"
 turbine = "1.2.1"
-versions = "0.64.0"
+versions = "0.66.0"
 jsonSchemaValidator = "1.5.9"
 
 [libraries]
