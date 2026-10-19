@@ -10,7 +10,7 @@
 * `org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.20`
 * `org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0`
 * `org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0`
-* `org.threeten:threetenbp:1.7.4`
+* `org.threeten:threetenbp:1.7.5`
 * Move inline JSON fixtures for schedule v1 into files.
 * Restructure schedule v1 related files and classes to add schedule version 2.
 * Fix showing exact line of failure in `ProductionApiTest`.
