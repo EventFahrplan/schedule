@@ -6,6 +6,7 @@
 
 ### Changes
 
+* **Breaking change:** Build with JVM target 21.
 * `com.squareup.okhttp3:okhttp:5.5.0`
 * `org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.21`
 * `org.jetbrains.kotlinx:kotlinx-serialization-json:1.12.0`
