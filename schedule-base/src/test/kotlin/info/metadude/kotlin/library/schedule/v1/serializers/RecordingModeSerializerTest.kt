@@ -1,13 +1,13 @@
 package info.metadude.kotlin.library.schedule.v1.serializers
 
 import com.google.common.truth.Truth.assertThat
+import info.metadude.kotlin.library.schedule.ScheduleJson
 import info.metadude.kotlin.library.schedule.v1.models.RecordingMode
 import info.metadude.kotlin.library.schedule.v1.models.RecordingMode.NOT_RECORDED_BY_DEFAULT
 import info.metadude.kotlin.library.schedule.v1.models.RecordingMode.RECORDING_FORBIDDEN
 import info.metadude.kotlin.library.schedule.v1.models.RecordingMode.RECORDING_NOT_POSSIBLE
 import info.metadude.kotlin.library.schedule.v1.models.RecordingMode.RECORD_BY_DEFAULT
 import info.metadude.kotlin.library.schedule.v1.models.RecordingMode.UNKNOWN
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonPrimitive
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -15,7 +15,7 @@ import org.junit.jupiter.params.provider.EnumSource
 
 internal class RecordingModeSerializerTest {
 
-    private val json = Json
+    private val json = ScheduleJson.create()
 
     @ParameterizedTest
     @EnumSource(RecordingMode::class)

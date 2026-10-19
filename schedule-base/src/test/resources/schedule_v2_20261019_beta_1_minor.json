@@ -1,0 +1,126 @@
+{
+  "$schema": "https://c3voc.de/schedule/schema2.json#beta-1",
+  "generator": {
+    "name": "fixture-generator",
+    "version": "2.0.0",
+    "url": "https://example.com/generator"
+  },
+  "schedule": {
+    "version": "2024-12-26 20:23",
+    "state": "PUBLISHED",
+    "baseUrl": "https://events.ccc.de/congress/2024/hub/",
+    "conference": {
+      "acronym": "38c3",
+      "title": "38C3",
+      "description": {
+        "en": "Fixture conference"
+      },
+      "start": "2024-12-27T09:30:00+00:00",
+      "end": "2024-12-30T17:45:00+00:00",
+      "timeZone": {
+        "name": "Europe/Berlin"
+      },
+      "url": "https://events.ccc.de/congress/2024/",
+      "languages": ["en", "de"],
+      "defaults": {
+        "theme": "dark",
+        "language": "en"
+      },
+      "tracks": [
+        {
+          "name": "CCC",
+          "colors": {
+            "light": "#F2F006",
+            "dark": "#F2F006"
+          },
+          "slug": "ccc"
+        }
+      ],
+      "rooms": [
+        {
+          "type": "LECTURE_HALL",
+          "name": "Saal 1",
+          "slug": "saal-1",
+          "guid": "ba692ba3-421b-5371-8309-60acc34a3c05",
+          "stream": {
+            "id": "s1"
+          },
+          "capacity": 3025,
+          "description": {
+            "en": "Lecture hall"
+          },
+          "features": {
+            "recording": "RECORD_BY_DEFAULT"
+          },
+          "parent": {
+            "name": "CCC",
+            "slug": "ccc",
+            "guid": "6840c453-af5c-413c-8127-adcbdcd98e9e"
+          }
+        }
+      ],
+      "days": [
+        {
+          "index": 1,
+          "date": "2024-12-27",
+          "start": "2024-12-27T09:30:00+00:00",
+          "end": "2024-12-28T06:00:00+01:00"
+        }
+      ]
+    },
+    "persons": [
+      {
+        "guid": "0c16ffaa-709d-599f-959f-9a38b911361a",
+        "name": "Gabriela Bogk",
+        "url": "https://example.com/people/gabriela",
+        "biography": "Host"
+      }
+    ],
+    "events": [
+      {
+        "type": "CEREMONY",
+        "guid": "270fa44c-821a-577f-8ca3-33e8d4a8c2a7",
+        "code": "HQCCYH",
+        "start": "2024-12-27T10:30:00+01:00",
+        "end": "2024-12-27T11:00:00+01:00",
+        "room": {
+          "name": "Saal 1",
+          "slug": "saal-1",
+          "guid": "ba692ba3-421b-5371-8309-60acc34a3c05"
+        },
+        "url": "https://events.ccc.de/congress/2024/hub/event/38c3-opening-ceremony/",
+        "slug": "38c3-opening-ceremony",
+        "title": "38C3: Opening Ceremony",
+        "subtitle": null,
+        "languages": ["en"],
+        "track": {
+          "slug": "ccc"
+        },
+        "abstract": "Glad you could make it!",
+        "description": {
+          "en": "This ceremony will prepare you."
+        },
+        "participants": [
+          { "guid": "0c16ffaa-709d-599f-959f-9a38b911361a", "name": "Gabriela Bogk" }
+        ],
+        "links": [
+          { "url": "https://example.net/", "title": "foo bar", "service": "FORGEJO" },
+          { "type": "ORIGIN", "url": "https://fahrplan.events.ccc.de/congress/2024/fahrplan/talk/HQCCYH/" }
+        ],
+        "attachments": [
+          { "type": "SLIDES", "url": "https://example.net/foo/bar/1235.pdf" }
+        ]
+      },
+      {
+        "type": "BREAK",
+        "title": "Lunch",
+        "subtitle": "Take a breath",
+        "start": "2024-12-27T12:00:00+01:00",
+        "end": "2024-12-27T13:00:00+01:00",
+        "room": {
+          "guid": "ba692ba3-421b-5371-8309-60acc34a3c05"
+        }
+      }
+    ]
+  }
+}

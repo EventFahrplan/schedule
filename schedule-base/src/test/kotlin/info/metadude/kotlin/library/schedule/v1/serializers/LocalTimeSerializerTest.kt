@@ -1,7 +1,7 @@
 package info.metadude.kotlin.library.schedule.v1.serializers
 
 import com.google.common.truth.Truth.assertThat
-import kotlinx.serialization.json.Json
+import info.metadude.kotlin.library.schedule.ScheduleJson
 import kotlinx.serialization.json.jsonPrimitive
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -10,7 +10,7 @@ import org.threeten.bp.format.DateTimeFormatter
 
 internal class LocalTimeSerializerTest {
 
-    private val json = Json
+    private val json = ScheduleJson.create()
     private val formatter = DateTimeFormatter.ofPattern("HH:mm")
 
     @ParameterizedTest

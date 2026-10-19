@@ -1,9 +1,9 @@
 package info.metadude.kotlin.library.schedule.v1.serializers
 
 import com.google.common.truth.Truth.assertThat
+import info.metadude.kotlin.library.schedule.ScheduleJson
 import info.metadude.kotlin.library.schedule.v1.models.RoomDescription.Text
 import info.metadude.kotlin.library.schedule.v1.models.RoomDescription.Translations
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test
 
 internal class RoomDescriptionSerializerTest {
 
-    private val json = Json
+    private val json = ScheduleJson.create()
 
     @Test
     fun `round trip Text`() {
