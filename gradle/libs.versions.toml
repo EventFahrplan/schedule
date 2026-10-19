@@ -10,7 +10,7 @@ retrofit = "3.0.0"
 threetenbp = "1.7.4"
 truth = "1.4.5"
 turbine = "1.2.1"
-versions = "0.64.0"
+versions = "0.66.0"
 jsonSchemaValidator = "1.5.9"
 
 [libraries]
