@@ -1,5 +1,14 @@
 # Schedule changelog
 
+## NEXT
+
+* Not published yet.
+
+### Changes
+
+* `com.squareup.okhttp3:okhttp:5.5.1`
+
+
 ## [v.3.0.0](https://github.com/EventFahrplan/schedule/releases/tag/v.3.0.0)
 
 * Published: 2026-10-20
