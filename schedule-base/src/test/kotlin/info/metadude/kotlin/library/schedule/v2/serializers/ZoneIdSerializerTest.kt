@@ -3,12 +3,12 @@ package info.metadude.kotlin.library.schedule.v2.serializers
 import com.google.common.truth.Truth.assertThat
 import info.metadude.kotlin.library.schedule.ScheduleJson
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.json.JsonDecodingException
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.jsonPrimitive
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import org.threeten.bp.DateTimeException
 import org.threeten.bp.ZoneId
 
 internal class ZoneIdSerializerTest {
@@ -29,7 +29,7 @@ internal class ZoneIdSerializerTest {
     @ParameterizedTest
     @ValueSource(strings = ["", "invalid"])
     fun `deserialize rejects invalid ZoneId`(wire: String) {
-        assertThrows<JsonDecodingException> {
+        assertThrows<DateTimeException> {
             json.decodeFromJsonElement(ZoneIdSerializer, JsonPrimitive(wire))
         }
     }
