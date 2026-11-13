@@ -1,5 +1,16 @@
 # Schedule changelog
 
+## NEXT
+
+* Not published yet.
+
+### Changes
+
+* `org.jetbrains.kotlinx:kotlinx-serialization-json:1.13.0`
+  * Exceptions thrown by Json format are no longer wrapped into `JsonDecodingException`, see https://github.com/Kotlin/kotlinx.serialization/releases/tag/v1.13.0 and https://github.com/Kotlin/kotlinx.serialization/releases/tag/v1.12.0
+* `com.squareup.okhttp3:okhttp:5.5.1`
+
+
 ## [v.3.0.0](https://github.com/EventFahrplan/schedule/releases/tag/v.3.0.0)
 
 * Published: 2026-10-20
