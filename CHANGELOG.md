@@ -1,8 +1,8 @@
 # Schedule changelog
 
-## NEXT
+## [v.3.1.0](https://github.com/EventFahrplan/schedule/releases/tag/v.3.1.0)
 
-* Not published yet.
+* Published: 2026-11-13
 
 ### Changes
 
